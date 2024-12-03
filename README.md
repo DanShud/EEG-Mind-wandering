@@ -18,6 +18,7 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 - Creating general setup, e.g. github repositiories, readme file 
 - Beging processing orginal data
 
-**Dan Shudrenko and Kai: 12/2 (1.5 hours):**
+**Dan Shudrenko and Kai: 12/2 (2.5 hours):**
 - Figured out how to extract data
-- (Kai) understood data. 
+- (Kai) understood data.
+- data is 2048 hz
