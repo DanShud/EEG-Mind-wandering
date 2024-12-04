@@ -23,7 +23,7 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 - (Kai) understood data.
 - data is 2048 hz
 
-- **Kai: 12/3 (2 hours):**
+**Kai: 12/3 (2 hours):**
 - Modified matlab script
 - Wrote powershell script to iterate over subjects and get data as csv 
 - extracted some sample data
