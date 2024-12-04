@@ -16,7 +16,8 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 ### Lab Notebook
 **Dan Shudrenko: 11/30 (2 hours):**
 - Creating general setup, e.g. github repositiories, readme file 
-- Beging processing orginal data
+- Figured the way to acess the data in needed format
+- Get acustomed with the data type and come with the conceptual implementaipon of the project
 
 **Dan Shudrenko and Kai: 12/2 (2.5 hours):**
 - Figured out how to extract data
@@ -27,3 +28,10 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 - Modified matlab script
 - Wrote powershell script to iterate over subjects and get data as csv 
 - extracted some sample data
+
+**Dan: 12/3 (1 hours):**
+- Mannually downloaded and converted all the data: I HATE SOFRTWARE FOR PSYCHOLOFY RESEARCH
+
+**Dan: 12/4 (4 hours):**
+- Featurized the data
+
