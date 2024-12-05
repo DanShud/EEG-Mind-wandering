@@ -35,3 +35,5 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 **Dan: 12/4 (4 hours):**
 - Featurized the data
 
+**Kai: 12/4 (1 hours):**
+- Developed function for extracting band frequncies
