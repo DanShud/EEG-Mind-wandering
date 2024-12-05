@@ -45,7 +45,7 @@ def get_power(current_event : int, data, event):
                 start = event[i][3]
     #checking if we need to close add anything
     if last_second+1 > start: 
-        if target_data:
+        if isinstance(target_data, np.ndarray):
             target_data = np.concatenate((target_data, data[int(start):int(last_second+1), :]))
         else:
             target_data =  data[int(start):int(last_second+1), :]
@@ -54,7 +54,7 @@ def get_power(current_event : int, data, event):
     alpha = [8,12]
     output = []
     for electrode in range(target_data.shape[1]):
-        if electrode == skip:
+        if electrode in skip:
             continue
         else:
             fft_result = np.fft.fft(target_data[:,electrode])
@@ -77,9 +77,10 @@ def ERPs(current_event, data, event):
     #intializing the values
     P2 = []
     N2 = []
-    for i in range(9):
-        P2.append(0)
-        N2.append(0)
+    for i in range(data.shape[1]):
+        if i not in skip:
+            P2.append(0)
+            N2.append(0)
     #trying to find 5 past events before probe
     past = 5
     count_P2 = 0
@@ -112,12 +113,9 @@ def ERPs(current_event, data, event):
                 #intializing the index in P2 array
                 j = 0
                 for electrode in range(data.shape[1]): 
-                    if electrode != skip: #if it is electrode of interest
+                    if electrode not in skip: #if it is electrode of interest
                         #finding the maximum value in the time window of 100-250 ms post response
-                        try:
-                            P2[j] += np.max(data[int(event[i][2] + (100*hz)):int(event[i][2] + (250*hz)), electrode])
-                        except: 
-                            print("Crush moment:", int(event[i][2] + (100*hz)),int(event[i][2] + (250*hz)), electrode, "shape:", data.shape)
+                        P2[j] += np.max(data[int(event[i][2] + (100*hz)):int(event[i][2] + (250*hz)), electrode])
                         j += 1
             if  N2_bad:
                 #increasing count of trial we took into accoutn
@@ -125,14 +123,16 @@ def ERPs(current_event, data, event):
                 #intializing the index in P2 array
                 j = 0
                 for electrode in range(data.shape[1]): 
-                    if electrode != skip: #if it is electrode of interest
+                    if electrode not in skip: #if it is electrode of interest
                         #finding the minimum value in the time window of 250-400 ms post response
                         N2[j] += np.min(data[int(event[i][2] + (250*hz)):int(event[i][2] + (400*hz)), electrode])
                         j += 1
     #finding the average
     for i in range(9):
-        P2[i] /= count_P2
-        N2[i] /= count_N2
+        if count_P2:
+            P2[i] /= count_P2
+        if count_N2:
+            N2[i] /= count_N2
     #merging them
     P2.extend(N2)
     return P2 
@@ -143,7 +143,5 @@ if __name__ == "__main__":
     subject_file = ""
     event_file  = ""
     subject_data =  np.genfromtxt(subject_file,skip_header=1, delimiter=','    )
-    event_data = np.genfromtxt(event_file,skip_header=1, delimiter=','    )
-
-    
+    event_data = np.genfromtxt(event_file,skip_header=1, delimiter=','    )   
     print(get_power(800,subject_data, event_data))
