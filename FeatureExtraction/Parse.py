@@ -8,7 +8,7 @@ Date: 12/4/2024
 
 #MY IMPORTS
 import numpy as np 
-from featurization import*
+from Featurization import*
 import csv
 #MY CLASSES
 
@@ -45,8 +45,8 @@ def parsing(filepath_data, filepath_event):
     based on their location and parses through them
     '''
     #opening files
-    data = np.loadtxt(filepath_data, delimiter=",", dtype=float, skip_header=1)
-    event =np.loadtxt(filepath_event, delimiter=",", dtype=float, skip_header=1)
+    data = np.loadtxt(filepath_data, delimiter=",", dtype=float, skiprows = 1)
+    event =np.loadtxt(filepath_event, delimiter=",", dtype=float, skiprows = 1)
     #first I will be working with SART data
     col_names = ["F3_t","F3_a","Fz_t","Fz_a","F4_t","F4_a","C3_t","C3_a","Cz_t",
                  "Cz_a","C4_t","C4_a","P3_t","P3_a","Pz_t","Pz_a","P4_t","P4_a",

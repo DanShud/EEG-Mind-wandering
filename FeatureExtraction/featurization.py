@@ -36,12 +36,12 @@ def get_power(current_event : int, data, event):
         if event[i][1] == 700000: 
             #if the bad block begins later after start 
             if event[i][2] > start: 
-                target_data = np.concatenate((target_data, data[start:event[i][2],:]))
+                target_data = np.concatenate((target_data, data[int(start):int(event[i][2]), :]))
             else: #if the bad block begins after start
                 start = event[i][3]
     #checking if we need to close add anything
     if last_second+1 > start: 
-        target_data = np.concatenate((target_data, data[start:last_second+1,:]))
+        target_data = np.concatenate((target_data, data[int(start):int(last_second+1), :]))
     ###############################################################################
     theta = [4,8]
     alpha = [8,12]

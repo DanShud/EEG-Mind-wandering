@@ -6,8 +6,7 @@ Date: 12/4/2024
 """
 
 #MY IMPORTS
-from parser import parsing
-from parser import Sub
+from Parse import*
 import os
 
 #MY FUNCTIONS
@@ -20,7 +19,7 @@ def main():
         files.append(filename)
     files = sorted(files)
     #parsing and saving the files
-    for i in range(len(files), step = 2): 
+    for i in range(0, len(files), 2): 
         sart, strop = parsing(files[i], files[i+1])
         sart.csv_save(files[i][:7] + "_sart")
         strop.csv_save(files[i][:7] + "_stroop")
