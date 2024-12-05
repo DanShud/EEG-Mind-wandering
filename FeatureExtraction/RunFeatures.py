@@ -15,8 +15,9 @@ def main():
     directory_path = "D:/DataSci F24/PracticeData"
     #finding all files in the directory
     files = []
-    for filename in os.listdir(directory_path): 
-        files.append(filename)
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename) 
+        files.append(file_path)
     files = sorted(files)
     #parsing and saving the files
     for i in range(0, len(files), 2): 

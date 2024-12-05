@@ -8,7 +8,7 @@ Date: 12/4/2024
 
 #MY IMPORTS
 import numpy as np 
-from Featurization import*
+from data_feat import*
 import csv
 #MY CLASSES
 
@@ -65,7 +65,7 @@ def parsing(filepath_data, filepath_event):
                 label = 1
             #finding feature values
             feat_val = get_power(i, data, event)
-            feat_val = feat_val.extend(ERPs(i, data, event))
+            feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
         sart.append(feat_val)
     stroop = Sub(col_names)
@@ -79,7 +79,7 @@ def parsing(filepath_data, filepath_event):
                 label = 1
             #finding feature values
             feat_val = get_power(i, data, event)
-            feat_val = feat_val.extend(ERPs(i, data, event))
+            feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
         stroop.append(feat_val)
     #returning parsed and featurized data

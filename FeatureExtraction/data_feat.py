@@ -87,14 +87,16 @@ def ERPs(current_event, data, event):
     i = current_event - 1
     while past > 0: 
         #if it is not a bad block
-        if event[i] != 700000:
+        if event[i][1] != 700000:
             #then we need one event less 
             past -= 1
             #checking if this event is not a bad block
             P2_bad = 1
             N2_bad = 1
             #going through the past 15 events and checking if they are not bad blocks
-            for j in range(j - 15, i): 
+            now = i
+            #
+            for j in range(now - 15, now): 
                 if event[j][3]  > event[i][2] + 100 *  hz:
                     #marking if there is a bad block
                     P2_bad = 0
@@ -112,7 +114,10 @@ def ERPs(current_event, data, event):
                 for electrode in range(data.shape[1]): 
                     if electrode != skip: #if it is electrode of interest
                         #finding the maximum value in the time window of 100-250 ms post response
-                        P2[j] += np.max(data[event[i][2] + round(100*hz):event[i][2] + round(250*hz), electrode])
+                        try:
+                            P2[j] += np.max(data[int(event[i][2] + (100*hz)):int(event[i][2] + (250*hz)), electrode])
+                        except: 
+                            print("Crush moment:", int(event[i][2] + (100*hz)),int(event[i][2] + (250*hz)), electrode, "shape:", data.shape)
                         j += 1
             if  N2_bad:
                 #increasing count of trial we took into accoutn
@@ -122,15 +127,15 @@ def ERPs(current_event, data, event):
                 for electrode in range(data.shape[1]): 
                     if electrode != skip: #if it is electrode of interest
                         #finding the minimum value in the time window of 250-400 ms post response
-                        N2[j] += np.min(data[event[i][2] + round(250*hz):event[i][2] + round(400*hz), electrode])
+                        N2[j] += np.min(data[int(event[i][2] + (250*hz)):int(event[i][2] + (400*hz)), electrode])
                         j += 1
     #finding the average
     for i in range(9):
         P2[i] /= count_P2
         N2[i] /= count_N2
     #merging them
-    res = P2.extend(N2)
-    return res
+    P2.extend(N2)
+    return P2 
 
 
 #Testing the function
