@@ -127,6 +127,9 @@ def ERPs(current_event, data, event):
                         #finding the minimum value in the time window of 250-400 ms post response
                         N2[j] += np.min(data[int(event[i][2] + (250*hz)):int(event[i][2] + (400*hz)), electrode])
                         j += 1
+        else:
+            # read a bad block just get previous event
+            i -= 1
     #finding the average
     for i in range(9):
         if count_P2:

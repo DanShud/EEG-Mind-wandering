@@ -67,7 +67,7 @@ def parsing(filepath_data, filepath_event):
             feat_val = get_power(i, data, event)
             feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
-        sart.append(feat_val)
+            sart.append(feat_val)
     stroop = Sub(col_names)
     for i in range(len(event)):
         #intializing label and features
@@ -81,7 +81,7 @@ def parsing(filepath_data, filepath_event):
             feat_val = get_power(i, data, event)
             feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
-        stroop.append(feat_val)
+            stroop.append(feat_val)
     #returning parsed and featurized data
     return (sart, stroop)
 
