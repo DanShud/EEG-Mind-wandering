@@ -22,7 +22,7 @@ def get_power(current_event : int, data, event):
     ###THE FOLLOWING LINE OF CODE TAKE INTO ACCOUNT BAD BLOCKS########################
     last_second = event[current_event][0]
     #initializing not bad block points
-    target_data = np.array([])
+    target_data = None
     #finding the start of the data
     start = last_second - interval 
     j = current_event - 1
@@ -36,12 +36,19 @@ def get_power(current_event : int, data, event):
         if event[i][1] == 700000: 
             #if the bad block begins later after start 
             if event[i][2] > start: 
-                target_data = np.concatenate((target_data, data[int(start):int(event[i][2]), :]))
+                if target_data:
+                    print(target_data.shape)
+                    target_data = np.concatenate((target_data, data[int(start):int(event[i][2]), :]))
+                else:
+                    target_data =  data[int(start):int(event[i][2]), :]
             else: #if the bad block begins after start
                 start = event[i][3]
     #checking if we need to close add anything
     if last_second+1 > start: 
-        target_data = np.concatenate((target_data, data[int(start):int(last_second+1), :]))
+        if target_data:
+            target_data = np.concatenate((target_data, data[int(start):int(last_second+1), :]))
+        else:
+            target_data =  data[int(start):int(last_second+1), :]
     ###############################################################################
     theta = [4,8]
     alpha = [8,12]
@@ -128,6 +135,10 @@ def ERPs(current_event, data, event):
 
 #Testing the function
 if __name__ == "__main__":
-    subject_file = r"C:\Users\kaibr\Downloads\DanDataScienceProjectFeelFreeToDelete\DanDataScienceProjectFeelFreeToDelete\subject_data\sub_59.cdt_data.csv"
+    subject_file = ""
+    event_file  = ""
     subject_data =  np.genfromtxt(subject_file,skip_header=1, delimiter=','    )
-    print(get_power(500000,subject_data))
+    event_data = np.genfromtxt(event_file,skip_header=1, delimiter=','    )
+
+    
+    print(get_power(800,subject_data, event_data))
