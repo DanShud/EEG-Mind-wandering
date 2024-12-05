@@ -32,7 +32,7 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 **Dan: 12/3 (1 hours):**
 - Mannually downloaded and converted all the data: I HATE SOFRTWARE FOR PSYCHOLOFY RESEARCH
 
-**Dan: 12/4 (4 hours):**
+**Dan: 12/4 (5 hours):**
 - Featurized the data
 
 **Kai: 12/4 (1 hours):**

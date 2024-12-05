@@ -6,3 +6,25 @@ Date: 12/4/2024
 """
 
 #MY IMPORTS
+from parser import parsing
+from parser import Sub
+import os
+
+#MY FUNCTIONS
+def main(): 
+    #setting the path to directory
+    directory_path = "D:/DataSci F24/PracticeData"
+    #finding all files in the directory
+    files = []
+    for filename in os.listdir(directory_path): 
+        files.append(filename)
+    files = sorted(files)
+    #parsing and saving the files
+    for i in range(len(files), step = 2): 
+        sart, strop = parsing(files[i], files[i+1])
+        sart.csv_save(files[i][:7] + "_sart")
+        strop.csv_save(files[i][:7] + "_stroop")
+
+
+if __name__ == "__main__": 
+    main()
