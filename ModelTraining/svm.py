@@ -12,7 +12,7 @@ def main():
   
   
   for name in file_names:
-    if "sart" in name: # Only sart data
+    # if "sart" in name: # Only sart data
       csv_file = pd.read_csv("./Data_featurized/" + name)
       train = csv_file.iloc[:10]
       test = csv_file.iloc[10:]
@@ -29,9 +29,20 @@ def main():
   train_y = train_np[:, -1:].reshape(-1)
   test_x = test_np[:, :-1]
   test_y = test_np[:, -1:].reshape(-1)
+  
+  # Normalize data
+  train_x_mean = train_x.mean(axis=0)
+  train_x_std = train_x.std(axis=0)
+  train_x -= train_x_mean
+  train_x /= train_x_std
+  
+  test_x_mean = test_x.mean(axis=0)
+  test_x_std = test_x.std(axis=0)
+  test_x -= test_x_mean
+  test_x /= test_x_std
     
   # Create SVM classifier and train model
-  clf = svm.SVC(kernel='linear', verbose=True, max_iter=10000000)
+  clf = svm.SVC(kernel='linear', verbose=True)
   clf.fit(train_x, train_y)
   
   # Make prediction on test data
@@ -41,6 +52,7 @@ def main():
   accuracy = accuracy_score(test_y, pred_y)
   
   print("Accuracy: " + str(accuracy))
+  print(clf.coef_)
   
 
 
