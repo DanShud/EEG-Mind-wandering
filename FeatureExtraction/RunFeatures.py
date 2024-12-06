@@ -12,7 +12,7 @@ import os
 #MY FUNCTIONS
 def main(): 
     #setting the path to directory
-    directory_path = "D:/DataSci F24/PracticeData"
+    directory_path = "D:/DataSci F24/Data"
     #finding all files in the directory
     files = []
     for filename in os.listdir(directory_path):
@@ -22,8 +22,8 @@ def main():
     #parsing and saving the files
     for i in range(0, len(files), 2): 
         sart, strop = parsing(files[i], files[i+1])
-        sart.csv_save(files[i][:7] + "_sart")
-        strop.csv_save(files[i][:7] + "_stroop")
+        sart.csv_save("./" + files[i][files[i].rfind("\\"):-3] + "_sart.csv")
+        strop.csv_save("./" + files[i][files[i].rfind("\\"):-3] + "_stroop.csv")
 
 
 if __name__ == "__main__": 

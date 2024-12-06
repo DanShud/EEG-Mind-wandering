@@ -36,8 +36,7 @@ def get_power(current_event : int, data, event):
         if event[i][1] == 700000: 
             #if the bad block begins later after start 
             if event[i][2] > start: 
-                if target_data:
-                    print(target_data.shape)
+                if isinstance(target_data, np.ndarray):
                     target_data = np.concatenate((target_data, data[int(start):int(event[i][2]), :]))
                 else:
                     target_data =  data[int(start):int(event[i][2]), :]

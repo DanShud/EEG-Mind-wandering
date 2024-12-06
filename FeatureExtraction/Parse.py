@@ -51,7 +51,7 @@ def parsing(filepath_data, filepath_event):
     col_names = ["F3_t","F3_a","Fz_t","Fz_a","F4_t","F4_a","C3_t","C3_a","Cz_t",
                  "Cz_a","C4_t","C4_a","P3_t","P3_a","Pz_t","Pz_a","P4_t","P4_a",
                  "F3_P2", "Fz_P2", "F4_P2", "C3_P2", "Cz_P2", "C4_P2", "P3_P2", "Pz_P2", "P4_P2",
-                 "F3_N2", "Fz_N2", "F4_N2", "C3_N2", "Cz_N2", "C4_N2", "P3_N2", "Pz_N2", "P4_N2"
+                 "F3_N2", "Fz_N2", "F4_N2", "C3_N2", "Cz_N2", "C4_N2", "P3_N2", "Pz_N2", "P4_N2", "label"
                  ]
     sart = Sub(col_names)
     #going through all the events
