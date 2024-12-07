@@ -11,11 +11,13 @@ def main():
   
   for name in sorted(file_names):
     #the code to train on sart or stroop
-    if "sart" in name:
+    if "stroop" in name:
+      print(name)
       csv_file = pd.read_csv("./FixedPowerData/" + name)
       csv_file.sample(frac=1)
       
-      num_part = int(len(csv_file) * (2/3))
+      # Use 2/3 for sart, 4/5 for stroop
+      num_part = int(len(csv_file) * (4/5))
       train = csv_file.iloc[:num_part]
       test = csv_file.iloc[num_part:]
       
