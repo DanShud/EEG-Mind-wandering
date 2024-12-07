@@ -6,6 +6,7 @@ Date: 12/4/2024
 
 #MY IMPORTS
 import numpy as np
+from mne.time_frequency import psd_array_multitaper
 
 #MY FUNCTIONS
 def get_power(current_event : int, data, event):
@@ -56,11 +57,14 @@ def get_power(current_event : int, data, event):
         if electrode in skip:
             continue
         else:
-            fft_result = np.fft.fft(target_data[:,electrode])
-            freqs = np.fft.fftfreq(len(target_data[:,electrode]), d=1/hz)
-            power_spectrum = np.abs(fft_result)**2 / target_data.shape[0]
-            theta_power = np.average(power_spectrum[(freqs >= theta[0]) & (freqs < theta[1])])
-            alpha_power = np.average(power_spectrum[(freqs >= alpha[0]) & (freqs < alpha[1])])
+            psds, freqs = psd_array_multitaper(target_data[:,electrode]/ np.max(np.abs(target_data[:,electrode])), sfreq=hz, fmin=0.5, fmax=30, adaptive=True)
+            # fft_result = np.fft.fft(target_data[:,electrode])
+            # freqs = np.fft.fftfreq(len(target_data[:,electrode]), d=1/hz)
+            # power_spectrum = np.abs(fft_result)**2 / target_data.shape[0]
+            # theta_power = np.average(power_spectrum[(freqs >= theta[0]) & (freqs < theta[1])])
+            # alpha_power = np.average(power_spectrum[(freqs >= alpha[0]) & (freqs < alpha[1])])
+            theta_power = np.sum(psds[(freqs >= theta[0]) & (freqs < theta[1])])
+            alpha_power = np.sum(psds[(freqs >= alpha[0]) & (freqs < alpha[1])])
             output.extend([theta_power,alpha_power])
     return output
 

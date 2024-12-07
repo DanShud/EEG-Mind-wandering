@@ -43,3 +43,4 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 
 **Dan, Kai and Ben: 12/5 (1 hours):**
 - Examined featurized data and decided how to train the model 
+
