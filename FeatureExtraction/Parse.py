@@ -31,10 +31,40 @@ class Sub:
         This method saves subject's featurized
         data as a CSV file
         '''
-        with open(file_name, mode = "w", newline="") as file: 
-            writer = csv.writer(file)
-            writer.writerows(self.data)
-            file.close()
+        counter = 0
+        for i in range(1, len(self.data)):
+            counter += self.data[i][-1]
+        if counter > 2 and counter < len(self.data) - 2:
+            with open(file_name, mode = "w", newline="") as file: 
+                writer = csv.writer(file)
+                writer.writerows(self.data)
+                file.close()
+
+    def cleaner(self):
+        """
+        This function deletes rows with weird data
+        """
+        #initializing the list of elements to delete
+        lines_to_delete = []
+        #going through every line of data
+        for i in range(1, len(self.data)):
+            flag = 1
+            #checking if P2 are negative
+            for j in range(18, 27):
+                if self.data[i][j] <= 0: 
+                    lines_to_delete.append(i)
+                    flag = 0
+                    break
+            if flag:
+                #checking if N2 is positive
+                for j in range(27, 35):
+                    if self.data[i][j] >= 0: 
+                        lines_to_delete.append(i)
+                        break
+        lines_to_delete.reverse()
+        for line in lines_to_delete:
+            self.data.pop(line)
+
 
 
 #MY FUNCTIONS
@@ -68,6 +98,7 @@ def parsing(filepath_data, filepath_event):
             feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
             sart.append(feat_val)
+    sart.cleaner()
     stroop = Sub(col_names)
     for i in range(len(event)):
         #intializing label and features
@@ -82,6 +113,7 @@ def parsing(filepath_data, filepath_event):
             feat_val.extend(ERPs(i, data, event))
             feat_val.append(label)
             stroop.append(feat_val)
+    stroop.cleaner()
     #returning parsed and featurized data
     return (sart, stroop)
 
