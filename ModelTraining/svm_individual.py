@@ -5,19 +5,19 @@ import pandas as pd
 
 def main():
   # Load dataset
-  file_names = os.listdir("./FixedPowerData")
+  file_names = os.listdir("../DataMerged")
   
   accuracies = []
   
   for name in sorted(file_names):
     #the code to train on sart or stroop
-    if "stroop" in name:
+    if True:
       print(name)
-      csv_file = pd.read_csv("./FixedPowerData/" + name)
+      csv_file = pd.read_csv("../DataMerged/" + name)
       csv_file.sample(frac=1)
       
       # Use 2/3 for sart, 4/5 for stroop
-      num_part = int(len(csv_file) * (4/5))
+      num_part = int(len(csv_file) * (2/3))
       train = csv_file.iloc[:num_part]
       test = csv_file.iloc[num_part:]
       
