@@ -59,8 +59,8 @@ def get_power(current_event : int, data, event):
             fft_result = np.fft.fft(target_data[:,electrode])
             freqs = np.fft.fftfreq(len(target_data[:,electrode]), d=1/hz)
             power_spectrum = np.abs(fft_result)**2 / target_data.shape[0]
-            theta_power = np.sum(power_spectrum[(freqs >= theta[0]) & (freqs < theta[1])])
-            alpha_power = np.sum(power_spectrum[(freqs >= alpha[0]) & (freqs < alpha[1])])
+            theta_power = np.average(power_spectrum[(freqs >= theta[0]) & (freqs < theta[1])])
+            alpha_power = np.average(power_spectrum[(freqs >= alpha[0]) & (freqs < alpha[1])])
             output.extend([theta_power,alpha_power])
     return output
 
