@@ -12,7 +12,7 @@ def main():
   
   
   for name in file_names:
-    # if "sart" in name: # Only sart data
+    if "stroop" in name: # Only sart data
       csv_file = pd.read_csv("./Data_featurized/" + name)
       train = csv_file.iloc[:10]
       test = csv_file.iloc[10:]
@@ -40,18 +40,25 @@ def main():
   test_x_std = test_x.std(axis=0)
   test_x -= test_x_mean
   test_x /= test_x_std
-    
+  
   # Create SVM classifier and train model
   clf = svm.SVC(kernel='linear', verbose=True)
   clf.fit(train_x, train_y)
   
   # Make prediction on test data
-  pred_y = clf.predict(test_x)
+  # pred_y = clf.predict(test_x)
+  
+  for i in range(0, len(test_y), 5):
+    pred_y = clf.predict(test_x[i: i+5])
+    accuracy = accuracy_score(test_y[i: i+5], pred_y)
+    
+    print(f"Participant {i//5} accuracy: {accuracy}")
+  
   
   # Calculate accuracy of model
-  accuracy = accuracy_score(test_y, pred_y)
+  # accuracy = accuracy_score(test_y, pred_y)
   
-  print("Accuracy: " + str(accuracy))
+  # print("Accuracy: " + str(accuracy))
   print(clf.coef_)
   
 
