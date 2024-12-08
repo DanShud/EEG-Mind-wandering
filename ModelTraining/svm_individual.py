@@ -8,7 +8,8 @@ def main():
   file_names = os.listdir("../DataMerged")
   
   accuracies = []
-  
+  tprs = []
+  tnrs = []
   for name in sorted(file_names):
     #the code to train on sart or stroop
     if True:
@@ -45,15 +46,32 @@ def main():
       # Create SVM classifier and train model
       clf = svm.SVC(kernel='rbf', verbose=True, max_iter= 1000000)
       clf.fit(train_x, train_y)
-      
-      accuracy = accuracy_score(test_y, clf.predict(test_x))
+      pred_y = clf.predict(test_x)
+      accuracy = accuracy_score(test_y,  pred_y)
       accuracies.append(accuracy)
+      tpr = 0
+      tnr = 0
+      for i in range(len(test_y)):
+        if test_y[i] == 1 and test_y[i] == pred_y[i]:
+          tpr += 1
+        elif test_y[i] == 0 and test_y[i] == pred_y[i]:
+          tnr += 1
+      
+      tpr = tpr / sum(test_y)
+      tnr = tnr / (len(test_y) - sum(test_y))
+      tprs.append(tpr)
+      tnrs.append(tnr)
+
+        
+
+
       print(f"Accuracy for {name}: {str(accuracy)}")
   
   
   
   print(f"Total accuracy: {sum(accuracies) / len(accuracies)}")
-  
+  print(tnrs)
+  print(tprs)  
 
 
 if __name__ == "__main__":
