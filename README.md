@@ -46,4 +46,11 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 - Examined featurized data and decided how to train the model
 
 **Ben: 12/6 (2 hours):**
-- Parsed data and trained initial svm model 
+- Parsed data and trained initial svm model
+
+**Dan, Kai and Ben: 12/7 (4 hours):**
+- Finished trained begin visualiztion
+
+  
+**Dan, Kai and Ben: 12/8 (2 hours):**
+- Made a presentation
