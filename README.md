@@ -1,6 +1,6 @@
 # Predicting Episodes of Mind-Wandering Based on EEG Recordings
 **Date of last edit:** 12/10/2024
-**Authors:** Kai Britt, Ben Jiang, Dan Shudrenko
+**Authors:** Dan Shudrenko, Kai Britt, Ben Jiang 
 
 ## Project description
 Please see the presentation following the link: https://docs.google.com/presentation/d/1hhglEtu1wiVbnQMD9HLInSBZO80fBzj4UeyEVY4FyDM/edit?usp=sharing
