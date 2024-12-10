@@ -24,9 +24,9 @@ We utilized Fourier transformation from MNE EEG python package to quantify power
 ### Training Model
 We group data by the two different tasks: “sart” and “stroop”. 2/3 of data points are used for training, 1/3 of data points are used for testing. Since each subject only has around 10-15 data points, using this partition will avoid a very discrete accuracy. The training was done using SVM, "rbf" kernel. Please look at the ModelTraining folder for more information. 
 ### Results
-For training on individual subjects, the average accuracy was 55%
-For training on Sart data and testing on Stroop data, accuracy was 56%
-For training on Stroop data and testing on Sart data, accuracy was 61%
+- For training on individual subjects, the average accuracy was 55%
+- For training on Sart data and testing on Stroop data, accuracy was 56%
+- For training on Stroop data and testing on Sart data, accuracy was 61%
 
 ### Lab Notebook
 **Dan Shudrenko: 11/30 (2 hours):**
