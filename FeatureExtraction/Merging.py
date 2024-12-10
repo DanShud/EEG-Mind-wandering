@@ -1,3 +1,10 @@
+"""
+This file merges the data from csv for sart and stroop tasks into one file
+Author: Dan Shudrenko
+Last edited: 12/8/2024 
+"""
+
+#my imports
 import os
 import pandas as pd
 

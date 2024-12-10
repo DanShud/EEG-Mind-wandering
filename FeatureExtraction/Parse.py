@@ -3,7 +3,7 @@ This file contains the class and function that allows to read
 and parse throught the data whil will be later used to extract
 features necessary for training
 Author: Danylo Shudrenko
-Date: 12/4/2024
+Date: 12/9/2024
 """
 
 #MY IMPORTS
