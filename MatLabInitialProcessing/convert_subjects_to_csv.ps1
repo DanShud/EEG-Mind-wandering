@@ -24,7 +24,7 @@ foreach ($f in $files){
 Echo $subject_file_names
 $idx = 1
 
-# run matlab exe with the base name as a parameter, spawn child process wait for it to resolve
+# run matlab exe with the base name as a parameter, spawn child process wait for it to
 foreach ($subject in $subject_file_names){
 	echo "$($idx) of $($subject_file_names.Length)"
 	Start-Process $matlabexe -NoNewWindow -Wait "$($subject)"
