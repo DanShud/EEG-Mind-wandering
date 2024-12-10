@@ -23,6 +23,7 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 Converted MATLAB tables to CSV tables using PowerShell bash code
 
 **FeatureExtraction folder** contains the following steps
+
 2. Participants were excluded on the following basis:
 - Missing event markers in the original data
 - Less than 3 episodes of mind-wandering or being on task, i.e. participant likely didn't respond to the mind-wandering probe truly
