@@ -19,10 +19,12 @@ Jin, C. Y., Borst, J. P., & van Vugt, M. K. (2019). Predicting task-general mind
 ## Implementation
 ### Data processing
 **MatLabIntialProcessing folder** contains the following step
-1. Extracting voltage values and event markers
-Converted MATLAB tables to CSV tables using PowerShell bash code:
+1. Extracting voltage values and event markers:
+Converted MATLAB tables to CSV tables using PowerShell bash code
+
 **FeatureExtraction folder** contains the following steps
-3. Participants were excluded on the following basis:
+
+2. Participants were excluded on the following basis:
 - Missing event markers in the original data
 - Less than 3 episodes of mind-wandering or being on task, i.e. participant likely didn't respond to the mind-wandering probe truly
 3. During extraction for the features below the time blocks marked as "bad blocks"—issues with the EEG recording—were excluded. If such an exclusion resulted in one or more missing features for the data point, the data point was excluded from the analysis. 
