@@ -1,7 +1,14 @@
+"""
+Name: Ben Jiang
+Date: Dec 10, 2024
+Description: This file parses the merged data by name, partitions the data, and trains the svm model for each individual participant. 
+"""
+
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def main():
   # Load dataset
@@ -10,6 +17,8 @@ def main():
   accuracies = []
   tprs = []
   tnrs = []
+  mind_wanderin_rate = []
+  
   for name in sorted(file_names):
     #the code to train on sart or stroop
     if True:
@@ -31,6 +40,7 @@ def main():
       test_x = test_np[:, :-1]
       test_y = test_np[:, -1:].reshape(-1)
   
+      mind_wanderin_rate.append((sum(train_y) + sum(test_y)) / (len(train_y) + len(test_y)))
  
       # Normalize data
       train_x_mean = train_x.mean(axis=0)
@@ -70,9 +80,19 @@ def main():
   
   
   print(f"Total accuracy: {sum(accuracies) / len(accuracies)}")
-  print(tnrs)
-  print(tprs)  
-
+  # print(tnrs)
+  # print(tprs)  
+  # print(mind_wanderin_rate)
+  
+  plt.scatter(mind_wanderin_rate, tprs, label="Individual Subject")
+  plt.xlabel("Mind wandering rate")
+  plt.ylabel("True positive rate")
+  plt.title("Mind wandering rate vs. True positive rate")
+  plt.legend()
+  plt.savefig("mwr:tpr.png", format="png")
+  
+  
+  
 
 if __name__ == "__main__":
   main()
