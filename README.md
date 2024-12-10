@@ -1,4 +1,4 @@
-# Project Name
+# Predicting Episodes of Mind-Wandering Based on EEG Recordings
 **Date of last edit:** 12/10/2024
 **Authors:** Kai Britt, Ben Jiang, Dan Shudrenko
 
