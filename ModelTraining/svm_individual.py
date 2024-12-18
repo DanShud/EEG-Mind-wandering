@@ -8,10 +8,25 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score
 import os
 import pandas as pd
+import argparse
+import numpy as np
+
+
+def parse_args():
+    """Parse command line arguments (train and test arff files)."""
+    parser = argparse.ArgumentParser(description='parsing command line arguments')
+
+    parser.add_argument('-v','--viz',nargs='?', default=False, const=True)
+
+    args = parser.parse_args()
+
+    return args
 import matplotlib.pyplot as plt
 
 def main():
   # Load dataset
+  args = parse_args()
+  viz = args.viz
   file_names = os.listdir("../DataMerged")
   
   accuracies = []
@@ -84,15 +99,35 @@ def main():
   # print(tprs)  
   # print(mind_wanderin_rate)
   
-  plt.scatter(mind_wanderin_rate, tprs, label="Individual Subject")
-  plt.xlabel("Mind wandering rate")
-  plt.ylabel("True positive rate")
-  plt.title("Mind wandering rate vs. True positive rate")
-  plt.legend()
-  plt.savefig("mwr:tpr.png", format="png")
-  
-  
-  
+  if viz:
+    plt.scatter(mind_wanderin_rate, tprs, label="Individual Subject")
+    plt.xlabel("Mind wandering rate")
+    plt.ylabel("True positive rate")
+    plt.title("Mind wandering rate vs. True positive rate")
+    plt.legend()
+    plt.savefig("mwr:tpr.png", format="png")
+    
+    
+    plt.clf()
+
+    width = 0.2  # Adjust bar width
+    subjects = np.arange(len(file_names))  # 0, 1, 2, ...
+
+    # Plotting
+    plt.bar(subjects - width, tprs, width, label="True positive rate")
+    plt.bar(subjects + width, tnrs, width, label="True negative rate")
+    plt.bar(subjects, accuracies, width, label="Accuracy")
+
+    # Labels and legend
+    plt.xlabel("Subjects")
+    plt.xticks(subjects, subjects)  # Align x-ticks with group centers
+    plt.title("Performance Measure")
+    plt.legend()
+
+    # Save and show the plot
+    plt.savefig("individual_performance.png",transparent=True)
+    plt.clf()
+        
 
 if __name__ == "__main__":
   main()

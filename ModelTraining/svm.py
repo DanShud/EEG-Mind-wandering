@@ -11,7 +11,7 @@ import pandas as pd
 
 def main():
   # Load dataset
-  file_names = os.listdir("./FixedPowerData")
+  file_names = os.listdir("../FixedPowerData")
   
   train_partition = pd.DataFrame()
   test_partition = pd.DataFrame()
@@ -22,7 +22,7 @@ def main():
   for name in sorted(file_names):
     if "stroop" in name: # Only sart data
       target_sub.append(name)
-      csv_file = pd.read_csv("./FixedPowerData/" + name)
+      csv_file = pd.read_csv("../FixedPowerData/" + name)
       csv_file.sample(frac=1)
       num_part = int(len(csv_file) * (2/3))
       train = csv_file.iloc[:num_part]
@@ -30,7 +30,25 @@ def main():
       part_size.append(len(test))
       # Partition the dataset into train and test (partition across all test subjects)
       train_partition = pd.concat([train_partition, train])
-      test_partition = pd.concat([test_partition, test])
+    else:
+      target_sub.append(name)
+      csv_file = pd.read_csv("../FixedPowerData/" + name)
+      csv_file.sample(frac=1)
+      test = csv_file
+      # Partition the dataset into train and test (partition across all test subjects)
+      test_partition = pd.concat([test_partition, test]) 
+  
+    # if "sart" in name: # Only sart data
+    #   target_sub.append(name)
+    #   csv_file = pd.read_csv("./FixedPowerData/" + name)
+    #   csv_file.sample(frac=1)
+    #   num_part = int(len(csv_file) * (2/3))
+    #   train = csv_file.iloc[:num_part]
+    #   test = csv_file.iloc[num_part:]
+    #   part_size.append(len(test))
+    #   # Partition the dataset into train and test (partition across all test subjects)
+    #   train_partition = pd.concat([train_partition, train])
+    #   test_partition = pd.concat([test_partition, test])
     
   train_np = train_partition.to_numpy()
   test_np = test_partition.to_numpy()

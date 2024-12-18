@@ -35,6 +35,9 @@ Converted MATLAB tables to CSV tables using PowerShell bash code
 We utilized Fourier transformation from MNE EEG python package to quantify the power of theta and alpha frequencies 5000 ms prior to stimuli
 ### Training Model
 We group data by the two different tasks: “sart” and “stroop”. 2/3 of data points are used for training, 1/3 of data points are used for testing. Since each subject only has around 10-15 data points, using this partition will avoid a very discrete accuracy. The training was done using SVM, "rbf" kernel. Please look at the **ModelTraining folder** for more information. 
+
+### Vizualization
+Run stroop_from_sart or svm_individual.py with the -v flag from the ModelTraining Directory
 ### Results
 - For training on individual subjects, the average accuracy was 55%
 - For training on Sart data and testing on Stroop data, accuracy was 56%
